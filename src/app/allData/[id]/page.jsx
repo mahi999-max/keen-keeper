@@ -29,8 +29,8 @@ const DataDetails = ({ params }) => {
         console.log(newVideo);
     }
     return (
-        <div className="px-[245px] py-20">
-            <div className=" flex gap-5 mb-3">
+        <div className="md:px-[245px] py-20">
+            <div className=" md:flex gap-5 mb-3">
                 <div className="w-full p-3 shadow grid justify-between items-center">
                     <Image src={picture} width={100} height={100} alt={name} className='rounded-full text-center'></Image>
                     <div className="font-bold text-2xl">{name}</div>
@@ -48,7 +48,7 @@ const DataDetails = ({ params }) => {
                         <p>Connect every<span className="font-bold">{goal} days</span></p>
                     </div></div>
             </div>
-            <div className="flex gap-3 space-y-3">
+            <div className="md:flex gap-3 space-y-3">
                 <div className="grid gap-3 justify-center w-100 text-center text-xl">
                     <div className="shadow w-100">Snooze 2 weeks</div>
                     <div className="shadow w-100">Archieve</div>
@@ -56,9 +56,10 @@ const DataDetails = ({ params }) => {
                 </div>
                 <div className="shadow w-full">
                     <p className="text-xl">Quick check in</p>
-                    <div className="flex gap-3 font-bold py-3"><div className="p-4 shadow w-full" onClick={handleCall}><IoCall />Call</div>
-                        <div className="p-4 shadow w-full" onClick={handletext}><LuMessageCircleMore/>Text</div>
-                        <div className="p-4 shadow w-full" onClick={handleVideo}><FaVideo />Video</div></div>
+                    <div className="flex md:gap-3 font-bold py-3 gap-3"><div className=" btn md:p-10 p-5" onClick={handleCall}><IoCall />Call</div>
+                        <div className="btn md:p-10 p-5" onClick={handletext}><LuMessageCircleMore/>Text</div>
+
+                        <div className="btn md:p-10 p-5" onClick={handleVideo}><FaVideo />Video</div></div>
                 </div>
             </div>
         </div>

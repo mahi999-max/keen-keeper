@@ -1,10 +1,8 @@
 'use client'
 import React, { useContext } from 'react';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts'
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts'
 import { Pie, PieChart } from 'recharts';
 import { context } from '../Provider/ContextProvider';
-// import { RechartsDevtools } from '@recharts/devtools';
-// ✅ Custom Tooltip — hover এ দেখাবে
 const CustomTooltip = ({ active, payload }) => {
     if (active && payload && payload.length) {
         return (
@@ -14,10 +12,7 @@ const CustomTooltip = ({ active, payload }) => {
             </div>
         )
     }
-    return null
 }
-
-// ✅ Custom Legend — নিচে color + title
 const CustomLegend = ({ payload }) => {
     return (
         <div className='flex gap-6 justify-center mt-4'>
@@ -39,20 +34,23 @@ const Stats = () => {
     { name: 'Text', value: text.length, fill: '#FFBB28' }
 ];
     return (
-        <div className='px-50 py-25 bg-[#e8e8e9e2]'>
+        <div className='md:px-50 md:py-25 bg-[#e8e8e9e2]'>
             <div className='font-bold text-5xl'>Friendship Analytics</div>
-            <PieChart width={500} height={500}>
+            <div className='w-full h-[500px]'>
+          <ResponsiveContainer width="100%" height="100%">
+            <PieChart>
             <Pie
                 data={data}
                 innerRadius={120}
                 outerRadius={150}
-                paddingAngle={5}
+                paddingAngle={2}
                 dataKey="value"
             />
             <Tooltip content={<CustomTooltip />} />
                 <Legend content={<CustomLegend />} />
         </PieChart>
-        
+        </ResponsiveContainer>
+        </div>
         </div>
     );
 };
