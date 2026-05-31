@@ -1,0 +1,60 @@
+'use client'
+import React, { useContext } from 'react';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts'
+import { Pie, PieChart } from 'recharts';
+import { context } from '../Provider/ContextProvider';
+// import { RechartsDevtools } from '@recharts/devtools';
+// ✅ Custom Tooltip — hover এ দেখাবে
+const CustomTooltip = ({ active, payload }) => {
+    if (active && payload && payload.length) {
+        return (
+            <div className='bg-white shadow p-3 rounded-xl'>
+                <p className='font-bold'>{payload[0].name}</p>
+                <p>Total: {payload[0].value}</p>
+            </div>
+        )
+    }
+    return null
+}
+
+// ✅ Custom Legend — নিচে color + title
+const CustomLegend = ({ payload }) => {
+    return (
+        <div className='flex gap-6 justify-center mt-4'>
+            {payload.map((entry, i) => (
+                <div key={i} className='flex items-center gap-2'>
+                    <div style={{ backgroundColor: entry.color }} className='w-4 h-4 rounded-full'></div>
+                    <span className='font-semibold'>{entry.value}</span>
+                </div>
+            ))}
+        </div>
+    )
+}
+
+const Stats = () => {
+    const { call, setCall, users, text, setText, video, setVideo } = useContext(context)
+    const data = [
+    { name: 'Call', value: call.length, fill: '#0088FE' },
+    { name: 'Video', value: video.length, fill: '#00C49F' },
+    { name: 'Text', value: text.length, fill: '#FFBB28' }
+];
+    return (
+        <div className='px-50 py-25 bg-[#e8e8e9e2]'>
+            <div className='font-bold text-5xl'>Friendship Analytics</div>
+            <PieChart width={500} height={500}>
+            <Pie
+                data={data}
+                innerRadius={120}
+                outerRadius={150}
+                paddingAngle={5}
+                dataKey="value"
+            />
+            <Tooltip content={<CustomTooltip />} />
+                <Legend content={<CustomLegend />} />
+        </PieChart>
+        
+        </div>
+    );
+};
+
+export default Stats;
