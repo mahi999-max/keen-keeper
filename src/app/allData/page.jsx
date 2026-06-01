@@ -1,24 +1,19 @@
 "use client"
-import Image from 'next/image';
-import Link from 'next/link';
-import React, { useState } from 'react';
+import { context } from "@/app/Provider/ContextProvider";
+import { useContext } from "react";
+import AllData from "./AllData"; // component আলাদা ফাইলে নিন
 
-const AllData = ({ data }) => {
-    const [call, setCall]=useState([])
-    // if(AllData.length===0)return<>Loading....</>
+const AllDataPage = () => {
+    const { users } = useContext(context)
+    if (!users || users.length === 0) return <p>Loading...</p>
+    
     return (
-        <Link href={`/allData/${data.id}`}>
-        <div className='border border-none w-full mx-auto rounded-2xl py-3 shadow-xl space-y-4'>
-            <div className='grid justify-center items-center'> <Image src={data.picture} width={60} height={60} alt={data.name} className='rounded-full text-center'></Image></div>
-            <div className='grid justify-center'>
-                <div className='font-bold text-xl'>{data.name}</div>
-                <div>{data.days_since_contact}d ago</div>
-                <div className='grid gap-2 text-center'>{data.tags.map((tag, ind) => <div key={ind} className='border-none rounded-3xl w-full bg-green-300'>{tag}</div>)}
-                <div className= {`border-none rounded-3xl w-full text-white ${data.status==='on track' ? 'bg-green-700': 'bg-amber-300'} `}>{data.status}</div></div>
-            </div>
+        <div className="grid grid-cols-3 gap-4 p-10">
+            {users.map(data => (
+                <AllData key={data.id} data={data} />
+            ))}
         </div>
-        </Link>
-    );
-};
+    )
+}
 
-export default AllData;
+export default AllDataPage;

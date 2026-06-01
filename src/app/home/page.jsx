@@ -1,7 +1,7 @@
 // import React from 'react';
 import { FaPlus, FaPlusCircle, FaPlusSquare } from 'react-icons/fa';
 import data from '../../../public/data.json'
-import AllData from '../allData/page';
+import AllData from '../allData/AllData';
 const HomePage = () =>{
     return (
     <div className='pt-20 mx-auto container mb-20 grid items-center justify-center space-y-5'>
