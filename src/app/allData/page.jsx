@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 
 const AllData = ({ data }) => {
     const [call, setCall]=useState([])
+    // if(AllData.length===0)return<>Loading....</>
     return (
         <Link href={`/allData/${data.id}`}>
         <div className='border border-none w-full mx-auto rounded-2xl py-3 shadow-xl space-y-4'>
