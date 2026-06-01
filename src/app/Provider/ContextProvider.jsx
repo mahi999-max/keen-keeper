@@ -1,5 +1,7 @@
 "use client"
 import React, { createContext, useEffect, useState } from 'react';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'; 
 export const context = createContext()
 const ContextProvider = ({ children }) => {
     const [call, setCall] = useState([])
@@ -17,6 +19,7 @@ const ContextProvider = ({ children }) => {
     return (
         <div>
             <context.Provider value={{ users, call, setCall, text, setText, video, setVideo }}>{children}</context.Provider>
+            <ToastContainer />
         </div>
     );
 };

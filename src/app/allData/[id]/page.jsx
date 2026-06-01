@@ -5,6 +5,7 @@ import { use, useContext } from "react";
 import { FaVideo } from "react-icons/fa";
 import { IoCall } from "react-icons/io5";
 import { LuMessageCircleMore } from "react-icons/lu";
+import { toast } from "react-toastify";
 
 // import data from '../../../public/data.json'
 const DataDetails = ({ params }) => {
@@ -18,16 +19,19 @@ const DataDetails = ({ params }) => {
     const handleCall=()=>{
         const newCall=([...call,{ type: 'Call', title: name, time: new Date().toLocaleTimeString()}])
         setCall(newCall)
+         toast.success(`succesfully audio called to ${name}`)
         console.log(newCall);
     }
     const handletext=()=>{
         const newText=([...text,{ type: 'Text', title: name, time: new Date().toLocaleTimeString()}])
         setText(newText)
+        toast.success(`succesfully texted to ${name}`)
         console.log(newText);
     }
     const handleVideo=()=>{
         const newVideo=([...video,{ type: 'Video', title: name, time: new Date().toLocaleTimeString()}])
         setVideo(newVideo)
+        toast.success(`succesfully video called to ${name}`)
         console.log(newVideo);
     }
     return (
