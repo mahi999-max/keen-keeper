@@ -9,7 +9,9 @@ import { LuMessageCircleMore } from "react-icons/lu";
 // import data from '../../../public/data.json'
 const DataDetails = ({ params }) => {
     const {call, setCall, users,text,setText,video,setVideo}=useContext(context)
-    const { id } = use(params)
+
+    const params_unwrapped = use(params)
+    const id= params_unwrapped.id
     const singledata = users.find(data => data.id == id)
      if (!singledata) return <p>Data not found.....</p>
     const { picture, name, status, tags, bio, days_since_contact, email, next_due_date, goal } = singledata
