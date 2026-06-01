@@ -1,11 +1,11 @@
 "use client"
 import { context } from "@/app/Provider/ContextProvider";
 import { useContext } from "react";
-import AllData from "./AllData"; // component আলাদা ফাইলে নিন
+import AllData from "./AllData"; 
 
 const AllDataPage = () => {
     const { users } = useContext(context)
-    if (!users || users.length === 0) return <p>Loading...</p>
+    if (users.length === 0) return <p>Loading...</p>
     
     return (
         <div className="grid grid-cols-3 gap-4 p-10">
