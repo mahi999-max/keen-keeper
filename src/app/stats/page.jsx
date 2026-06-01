@@ -1,6 +1,6 @@
 'use client'
 import React, { useContext } from 'react';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts'
+import { Tooltip, Legend, ResponsiveContainer } from 'recharts'
 import { Pie, PieChart } from 'recharts';
 import { context } from '../Provider/ContextProvider';
 const CustomTooltip = ({ active, payload }) => {
@@ -36,7 +36,12 @@ const Stats = () => {
     return (
         <div className='md:px-50 md:py-25 bg-[#e8e8e9e2]'>
             <div className='font-bold text-5xl'>Friendship Analytics</div>
-            <div className='w-full h-[500px]'>
+
+            {call.length === 0 && text.length === 0 && video.length === 0 ? (
+                <div className='flex flex-col items-center justify-center py-20 gap-4'>
+                    <p className='text-2xl font-bold text-gray-400'>No Data Found</p>
+                </div>
+            ) :(<div className='w-full h-[500px]'>
           <ResponsiveContainer width="100%" height="100%">
             <PieChart>
             <Pie
@@ -50,7 +55,7 @@ const Stats = () => {
                 <Legend content={<CustomLegend />} />
         </PieChart>
         </ResponsiveContainer>
-        </div>
+        </div>)}
         </div>
     );
 };
